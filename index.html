@@ -3,1553 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Magic - Transform Your Ideas into Videos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>AI Image to Video Essay</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Global Styles */
-        :root {
-            --primary: #6e48aa;
-            --secondary: #9d50bb;
-            --accent: #4776e6;
-            --light: #f8f9fa;
-            --dark: #212529;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7fa;
-        }
-        
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--accent);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(110, 72, 170, 0.4);
-            color: white;
-        }
-        
+        /* Custom styles */
         .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            min-height: 100vh;
         }
-        
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            font-weight: 500;
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #555;
-        }
-        
-        .hero-image {
-            max-width: 800px;
-            margin: 40px auto 0;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.5s ease;
-        }
-        
-        .hero-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        /* How It Works Section */
-        .how-it-works {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-        }
-        
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-        
-        .step {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-            margin-bottom: 40px;
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
-        
-        .step h3 {
-            margin-bottom: 15px;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 30px;
-            position: relative;
+
+        #upload-section label:hover svg {
+            transform: scale(1.05);
             transition: transform 0.3s ease;
         }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .testimonial-card::before {
-            content: '"';
-            font-size: 80px;
-            color: rgba(110, 72, 170, 0.1);
-            position: absolute;
-            top: 10px;
-            left: 20px;
-        }
-        
-        .testimonial-content {
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
-        }
-        
-        .author-info h4 {
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: #777;
-            font-size: 0.9rem;
-        }
-        
-        /* CTA Section */
-        .cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .cta .btn {
-            background: white;
-            color: var(--primary);
-        }
-        
-        /* Pricing Section */
-        .pricing {
-            padding: 100px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 10px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .pricing-card.popular {
-            border: 2px solid var(--primary);
-            position: relative;
-        }
-        
-        .popular-tag {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .price span {
-            font-size: 1rem;
-            color: #777;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #bbb;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
-        
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #777;
-        }
-        
-        .close-modal:hover {
-            color: var(--primary);
-        }
-        
-        .modal h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        /* Video Converter Page */
-        .converter-page {
-            display: none;
-            padding: 100px 0;
-        }
-        
-        .converter-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .converter-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .converter-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .converter-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .converter-box {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .upload-area {
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-        }
-        
-        .upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(110, 72, 170, 0.05);
-        }
-        
-        .upload-icon {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .upload-text h3 {
-            margin-bottom: 10px;
-        }
-        
-        .upload-text p {
-            color: #777;
-            margin-bottom: 15px;
-        }
-        
-        .file-input {
-            display: none;
-        }
-        
-        .selected-file {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f9f9f9;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .file-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .file-icon {
-            font-size: 24px;
-            color: var(--primary);
-            margin-right: 15px;
-        }
-        
-        .remove-file {
-            color: #ff4444;
-            cursor: pointer;
-        }
-        
-        .options {
-            margin-bottom: 30px;
-        }
-        
-        .option-group {
-            margin-bottom: 20px;
-        }
-        
-        .option-group h4 {
-            margin-bottom: 10px;
-        }
-        
-        .option-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .option-btn {
-            padding: 8px 15px;
-            background: #f1f1f1;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .option-btn:hover {
-            background: #e1e1e1;
-        }
-        
-        .option-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .convert-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .result-area {
-            display: none;
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .result-video {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .download-btn {
-            margin-top: 20px;
-        }
-        
-        /* Loading State */
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(110, 72, 170, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
+
+        video {
+            max-height: 70vh;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
             }
             
-            .step {
-                flex: 100%;
-                margin-bottom: 40px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero {
-                padding: 120px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .features, .how-it-works, .testimonials, .cta, .pricing {
-                padding: 80px 0;
-            }
-            
-            .converter-header h1 {
+            header h1 {
                 font-size: 2rem;
             }
             
-            .upload-area {
-                padding: 30px 20px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .cta h2 {
-                font-size: 2rem;
-            }
-            
-            .modal-content {
-                padding: 30px 20px;
-            }
-            
-            .converter-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .option-row {
-                justify-content: center;
+            #upload-section {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">AI<span>Video</span>Magic</a>
-                <ul class="nav-links">
-                    <li><a href="#" id="home-link">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#" class="btn" id="try-it-free">Try It Free</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-700 mb-4">AI Image to Video Essay</h1>
+            <p class="text-xl text-gray-600">Transform your images into engaging video essays with AI</p>
+        </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Home Page -->
-        <div id="home-page">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="container">
-                    <h1 class="animate__animated animate__fadeInDown">Transform Your Ideas Into Stunning Videos</h1>
-                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Our AI-powered platform creates professional-quality videos in minutes. No technical skills required - just your imagination!</p>
-                    <a href="#" class="btn animate__animated animate__fadeInUp animate__delay-2s" id="get-started">Get Started Now</a>
-                    <div class="hero-image animate__animated animate__fadeIn animate__delay-3s">
-                        <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Video Creation">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features Section -->
-            <section class="features" id="features">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Powerful Features</h2>
-                        <p>Discover how our AI video generator can revolutionize your content creation process</p>
-                    </div>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-magic"></i>
-                            </div>
-                            <h3>One-Click Generation</h3>
-                            <p>Transform text prompts or images into high-quality videos with just one click.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-palette"></i>
-                            </div>
-                            <h3>Multiple Styles</h3>
-                            <p>Choose from various video styles including animation, cinematic, and more.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-music"></i>
-                            </div>
-                            <h3>Auto Soundtrack</h3>
-                            <p>Our AI adds perfectly matched background music to your videos.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-language"></i>
-                            </div>
-                            <h3>Multi-Language</h3>
-                            <p>Create videos in dozens of languages with accurate voiceovers.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-sliders-h"></i>
-                            </div>
-                            <h3>Custom Controls</h3>
-                            <p>Fine-tune every aspect of your video with advanced editing tools.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>Lightning Fast</h3>
-                            <p>Generate videos in minutes, not hours. Perfect for tight deadlines.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How It Works Section -->
-            <section class="how-it-works" id="how-it-works">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>How It Works</h2>
-                        <p>Creating amazing videos has never been easier</p>
-                    </div>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h3>Describe Your Vision</h3>
-                            <p>Enter a text prompt or upload an image that describes what you want to create.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h3>Customize Settings</h3>
-                            <p>Choose your preferred style, duration, and other parameters.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h3>Generate Video</h3>
-                            <p>Our AI works its magic to create your video in just minutes.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h3>Download & Share</h3>
-                            <p>Download your video or share it directly to social media platforms.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing Section -->
-            <section class="pricing" id="pricing">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Simple, Transparent Pricing</h2>
-                        <p>Choose the plan that fits your needs</p>
-                    </div>
-                    <div class="pricing-cards">
-                        <div class="pricing-card">
-                            <h3>Starter</h3>
-                            <div class="price">$19<span>/month</span></div>
-                            <ul class="pricing-features">
-                                <li>10 video generations/month</li>
-                                <li>720p resolution</li>
-                                <li>Basic video styles</li>
-                                <li>5 music tracks</li>
-                                <li>Email support</li>
-                            </ul>
-                            <a href="#" class="btn" data-plan="starter">Choose Plan</a>
-                        </div>
-                        <div class="pricing-card popular">
-                            <div class="popular-tag">Most Popular</div>
-                            <h3>Professional</h3>
-                            <div class="price">$49<span>/month</span></div>
-                            <ul class="pricing-features">
-                                <li>50 video generations/month</li>
-                                <li>1080p resolution</li>
-                                <li>All video styles</li>
-                                <li>20 music tracks</li>
-                                <li>Priority support</li>
-                            </ul>
-                            <a href="#" class="btn" data-plan="professional">Choose Plan</a>
-                        </div>
-                        <div class="pricing-card">
-                            <h3>Enterprise</h3>
-                            <div class="price">$99<span>/month</span></div>
-                            <ul class="pricing-features">
-                                <li>Unlimited generations</li>
-                                <li>4K resolution</li>
-                                <li>All premium styles</li>
-                                <li>Unlimited music</li>
-                                <li>24/7 dedicated support</li>
-                            </ul>
-                            <a href="#" class="btn" data-plan="enterprise">Choose Plan</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section class="testimonials" id="testimonials">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>What Our Users Say</h2>
-                        <p>Thousands of creators are already using AI Video Magic</p>
-                    </div>
-                    <div class="testimonial-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>This platform has completely transformed my content creation process. I can now produce high-quality videos in minutes that used to take me days!</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J." class="author-avatar">
-                                <div class="author-info">
-                                    <h4>Sarah Johnson</h4>
-                                    <p>Marketing Director</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>As a small business owner, I couldn't afford professional video production. AI Video Magic gives me studio-quality results at a fraction of the cost.</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="author-avatar">
-                                <div class="author-info">
-                                    <h4>Michael Thompson</h4>
-                                    <p>Small Business Owner</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>The AI understands my creative vision better than some human editors I've worked with. It's like having a professional video team at my fingertips.</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily R." class="author-avatar">
-                                <div class="author-info">
-                                    <h4>Emily Rodriguez</h4>
-                                    <p>Content Creator</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta">
-                <div class="container">
-                    <h2>Ready to Create Amazing Videos?</h2>
-                    <p>Join thousands of creators who are saving time and money with AI Video Magic. Start your free trial today!</p>
-                    <a href="#" class="btn" id="start-trial">Start Free Trial</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- Video Converter Page -->
-        <div id="converter-page" class="converter-page">
-            <section class="converter-container">
-                <div class="converter-header">
-                    <h1>Image to Video Converter</h1>
-                    <p>Upload your image and let our AI transform it into a stunning video</p>
-                </div>
-                
-                <div class="converter-box">
-                    <div class="upload-area" id="upload-area">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="upload-text">
-                            <h3>Upload Your Image</h3>
-                            <p>Drag & drop your image here or click to browse files</p>
-                            <button class="btn">Select Image</button>
-                        </div>
-                        <input type="file" id="file-input" class="file-input" accept="image/*">
-                    </div>
-                    
-                    <div class="selected-file" id="selected-file" style="display: none;">
-                        <div class="file-info">
-                            <div class="file-icon">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div>
-                                <h4 id="file-name">example.jpg</h4>
-                                <p id="file-size">2.4 MB</p>
-                            </div>
-                        </div>
-                        <div class="remove-file" id="remove-file">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="options">
-                        <div class="option-group">
-                            <h4>Video Style</h4>
-                            <div class="option-row">
-                                <div class="option-btn active">Cinematic</div>
-                                <div class="option-btn">Animation</div>
-                                <div class="option-btn">Documentary</div>
-                                <div class="option-btn">Social Media</div>
-                            </div>
-                        </div>
-                        
-                        <div class="option-group">
-                            <h4>Duration</h4>
-                            <div class="option-row">
-                                <div class="option-btn active">15 seconds</div>
-                                <div class="option-btn">30 seconds</div>
-                                <div class="option-btn">1 minute</div>
-                                <div class="option-btn">Custom</div>
-                            </div>
-                        </div>
-                        
-                        <div class="option-group">
-                            <h4>Music</h4>
-                            <div class="option-row">
-                                <div class="option-btn active">Upbeat</div>
-                                <div class="option-btn">Calm</div>
-                                <div class="option-btn">Epic</div>
-                                <div class="option-btn">No Music</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn convert-btn" id="convert-btn">Convert to Video</button>
-                    
-                    <div class="loading" id="loading">
-                        <div class="spinner"></div>
-                        <h3>Generating your video...</h3>
-                        <p>This usually takes about 1-2 minutes</p>
-                    </div>
-                    
-                    <div class="result-area" id="result-area">
-                        <h3>Your AI-Generated Video</h3>
-                        <video controls class="result-video" id="result-video">
-                            <source src="" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <button class="btn download-btn" id="download-btn">
-                            <i class="fas fa-download"></i> Download Video
-                        </button>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>AI Video Magic</h3>
-                    <p>Transforming ideas into stunning videos with the power of artificial intelligence.</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" id="footer-home-link">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">API Documentation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR Compliance</a></li>
-                    </ul>
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-3xl mx-auto">
+            <div id="upload-section" class="text-center">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-12 mb-6 hover:border-indigo-500 transition">
+                    <input type="file" id="image-upload" accept="image/*" class="hidden">
+                    <label for="image-upload" class="cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-indigo-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold mb-2">Upload an Image</h3>
+                        <p class="text-gray-500 mb-4">JPG, PNG, or WEBP. Max 16MB.</p>
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Select File</button>
+                    </label>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 AI Video Magic. All rights reserved.</p>
+
+            <div id="processing-section" class="hidden text-center">
+                <div class="animate-pulse mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Creating Your Video Essay</h3>
+                <p class="text-gray-500 mb-4">Our AI is analyzing your image and generating a script...</p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div id="result-section" class="hidden">
+                <h3 class="text-xl font-semibold mb-4 text-center">Your Video Essay is Ready!</h3>
+                <div class="mb-6 aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
+                    <video id="result-video" controls class="w-full">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button id="download-btn" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download Video
+                    </button>
+                    <button id="new-video-btn" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition">
+                        Create Another
+                    </button>
+                </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Signup Modal -->
-    <div class="modal" id="signup-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Start Your Free Trial</h2>
-            <form id="signup-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required minlength="8">
-                </div>
-                <div class="form-group">
-                    <label for="plan">Select Plan</label>
-                    <select id="plan" name="plan">
-                        <option value="starter">Starter - $19/month</option>
-                        <option value="professional" selected>Professional - $49/month</option>
-                        <option value="enterprise">Enterprise - $99/month</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">Create Account</button>
-            </form>
+        <div class="mt-12 text-center text-gray-500">
+            <p>Powered by AI technology. Videos are processed on our servers and deleted after 24 hours.</p>
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div class="modal" id="login-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Login to Your Account</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="login-email">Email Address</label>
-                    <input type="email" id="login-email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" name="password" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">Login</button>
-            </form>
-            <p style="text-align: center; margin-top: 20px;">Don't have an account? <a href="#" id="switch-to-signup">Sign up here</a></p>
-        </div>
-    </div>
-
-    <!-- Video Demo Modal -->
-    <div class="modal" id="demo-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>See AI Video Magic in Action</h2>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 20px 0;">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-            </div>
-            <p>Watch how quickly you can transform your ideas into professional videos with our AI technology.</p>
-        </div>
-    </div>
-
-    <!-- Backend Simulation -->
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-        
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                document.querySelector('.nav-links').classList.remove('active');
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Modal functionality
-        const signupModal = document.getElementById('signup-modal');
-        const loginModal = document.getElementById('login-modal');
-        const demoModal = document.getElementById('demo-modal');
-        
-        // Open modal buttons
-        document.getElementById('try-it-free').addEventListener('click', function(e) {
-            e.preventDefault();
-            signupModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        document.getElementById('get-started').addEventListener('click', function(e) {
-            e.preventDefault();
-            signupModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        document.getElementById('start-trial').addEventListener('click', function(e) {
-            e.preventDefault();
-            signupModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // Close modal buttons
-        document.querySelectorAll('.close-modal').forEach(button => {
-            button.addEventListener('click', function() {
-                signupModal.style.display = 'none';
-                loginModal.style.display = 'none';
-                demoModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Switch between login and signup
-        document.getElementById('switch-to-signup').addEventListener('click', function(e) {
-            e.preventDefault();
-            loginModal.style.display = 'none';
-            signupModal.style.display = 'flex';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', function(e) {
-            if (e.target === signupModal) {
-                signupModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (e.target === demoModal) {
-                demoModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Form submission
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send the data to your backend
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Signup form submitted:', data);
-            
-            // Simulate successful signup
-            alert(`Thank you for signing up, ${data.name}! Your ${data.plan} plan trial has started.`);
-            signupModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            
-            // Show the converter page after signup
-            showConverterPage();
-        });
-        
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send the data to your backend
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Login form submitted:', data);
-            
-            // Simulate successful login
-            alert('Login successful! Redirecting to your dashboard...');
-            loginModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            
-            // Show the converter page after login
-            showConverterPage();
-        });
-        
-        // Pricing plan selection
-        document.querySelectorAll('[data-plan]').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const plan = this.getAttribute('data-plan');
-                document.getElementById('plan').value = plan;
-                signupModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Demo video buttons (you can add these to your HTML where needed)
-        document.querySelectorAll('.demo-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                demoModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.feature-card, .step, .testimonial-card, .pricing-card');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animate__animated', 'animate__fadeInUp');
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('image-upload');
+            const uploadSection = document.getElementById('upload-section');
+            const processingSection = document.getElementById('processing-section');
+            const resultSection = document.getElementById('result-section');
+            const resultVideo = document.getElementById('result-video');
+            const downloadBtn = document.getElementById('download-btn');
+            const newVideoBtn = document.getElementById('new-video-btn');
+            const progressBar = document.getElementById('progress-bar');
+
+            imageUpload.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    if (file.size > 16 * 1024 * 1024) {
+                        alert('File size exceeds 16MB limit');
+                        return;
+                    }
+                    
+                    uploadSection.classList.add('hidden');
+                    processingSection.classList.remove('hidden');
+                    
+                    // Simulate progress (in real app, this would be from actual upload/processing)
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        progress += 5;
+                        progressBar.style.width = `${progress}%`;
+                        
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                            processImage(file);
+                        }
+                    }, 300);
                 }
             });
-        }
-        
-        window.addEventListener('scroll', animateOnScroll);
-        // Initial check in case elements are already in view
-        animateOnScroll();
-        
-        // Show converter page function
-        function showConverterPage() {
-            document.getElementById('home-page').style.display = 'none';
-            document.getElementById('converter-page').style.display = 'block';
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-        
-        // Home link functionality
-        document.getElementById('home-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('home-page').style.display = 'block';
-            document.getElementById('converter-page').style.display = 'none';
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        });
-        
-        document.getElementById('footer-home-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('home-page').style.display = 'block';
-            document.getElementById('converter-page').style.display = 'none';
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        });
-        
-        // Video Converter Functionality
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const selectedFile = document.getElementById('selected-file');
-        const fileName = document.getElementById('file-name');
-        const fileSize = document.getElementById('file-size');
-        const removeFile = document.getElementById('remove-file');
-        const convertBtn = document.getElementById('convert-btn');
-        const loading = document.getElementById('loading');
-        const resultArea = document.getElementById('result-area');
-        const resultVideo = document.getElementById('result-video');
-        const downloadBtn = document.getElementById('download-btn');
-        
-        // Upload area click event
-        uploadArea.addEventListener('click', function() {
-            fileInput.click();
-        });
-        
-        // File input change event
-        fileInput.addEventListener('change', function(e) {
-            if (e.target.files.length > 0) {
-                const file = e.target.files[0];
-                displaySelectedFile(file);
-            }
-        });
-        
-        // Drag and drop functionality
-        uploadArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            uploadArea.style.borderColor = var(--primary);
-            uploadArea.style.backgroundColor = 'rgba(110, 72, 170, 0.05)';
-        });
-        
-        uploadArea.addEventListener('dragleave', function() {
-            uploadArea.style.borderColor = '#ddd';
-            uploadArea.style.backgroundColor = 'transparent';
-        });
-        
-        uploadArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#ddd';
-            uploadArea.style.backgroundColor = 'transparent';
-            
-            if (e.dataTransfer.files.length > 0) {
-                const file = e.dataTransfer.files[0];
-                displaySelectedFile(file);
-                fileInput.files = e.dataTransfer.files;
-            }
-        });
-        
-        // Display selected file
-        function displaySelectedFile(file) {
-            fileName.textContent = file.name;
-            fileSize.textContent = formatFileSize(file.size);
-            selectedFile.style.display = 'flex';
-        }
-        
-        // Format file size
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-        
-        // Remove file
-        removeFile.addEventListener('click', function() {
-            fileInput.value = '';
-            selectedFile.style.display = 'none';
-        });
-        
-        // Convert button click
-        convertBtn.addEventListener('click', function() {
-            if (!fileInput.files.length) {
-                alert('Please select an image first');
-                return;
-            }
-            
-            // Show loading state
-            convertBtn.style.display = 'none';
-            loading.style.display = 'block';
-            
-            // Simulate video generation (in a real app, this would call your backend API)
-            setTimeout(function() {
-                loading.style.display = 'none';
-                resultArea.style.display = 'block';
+
+            async function processImage(file) {
+                const formData = new FormData();
+                formData.append('image', file);
                 
-                // Set a sample video (in a real app, this would be the generated video URL)
-                resultVideo.src = 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4';
-                resultVideo.load();
-            }, 3000);
-        });
-        
-        // Download button click
-        downloadBtn.addEventListener('click', function() {
-            // In a real app, this would download the generated video
-            alert('Video download would start here');
-        });
-        
-        // Option buttons
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from siblings
-                this.parentNode.querySelectorAll('.option-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-            });
+                try {
+                    // In a real implementation, this would call your Flask backend
+                    // For this demo, we'll simulate a successful response
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Simulated response - in a real app, you would use:
+                    // const response = await fetch('/upload', { method: 'POST', body: formData });
+                    // const data = await response.json();
+                    
+                    const data = {
+                        video_url: "https://example.com/sample-video.mp4" // Replace with actual endpoint
+                    };
+                    
+                    // Show result
+                    processingSection.classList.add('hidden');
+                    resultVideo.src = data.video_url;
+                    resultSection.classList.remove('hidden');
+                    
+                    // Set up download button
+                    downloadBtn.addEventListener('click', () => {
+                        window.location.href = data.video_url;
+                    });
+                } catch (error) {
+                    alert(`Error: ${error.message}`);
+                    resetForm();
+                }
+            }
+
+            newVideoBtn.addEventListener('click', resetForm);
+
+            function resetForm() {
+                imageUpload.value = '';
+                progressBar.style.width = '0%';
+                resultSection.classList.add('hidden');
+                processingSection.classList.add('hidden');
+                uploadSection.classList.remove('hidden');
+            }
         });
     </script>
 </body>
 </html>
+
+from flask import Flask, request, jsonify, send_file, render_template
+from werkzeug.utils import secure_filename
+import os
+import base64
+from PIL import Image
+import moviepy.editor as mpe
+from gtts import gTTS
+import openai
+import tempfile
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
+
+# Initialize OpenAI (replace with your API key)
+openai.api_key = os.getenv('OPENAI_API_KEY', 'your-api-key-here')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image uploaded'}), 400
+    
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    if file:
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        # Process image and generate video
+        try:
+            video_path = process_image_to_video(filepath)
+            
+            return jsonify({
+                'message': 'Video generated successfully',
+                'video_url': f'/download/{os.path.basename(video_path)}'
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+def process_image_to_video(image_path):
+    # Analyze image and generate script
+    script = generate_script_from_image(image_path)
+    
+    # Generate narration
+    tts = gTTS(text=script, lang='en')
+    audio_path = os.path.join(tempfile.gettempdir(), 'narration.mp3')
+    tts.save(audio_path)
+    
+    # Create video
+    img_clip = mpe.ImageClip(image_path).set_duration(mpe.AudioFileClip(audio_path).duration)
+    audio_clip = mpe.AudioFileClip(audio_path)
+    
+    final_clip = img_clip.set_audio(audio_clip)
+    output_path = os.path.join(app.config['UPLOAD_FOLDER'], 'output.mp4')
+    final_clip.write_videofile(output_path, fps=24)
+    
+    return output_path
+
+def generate_script_from_image(image_path):
+    # For demo purposes, we'll use a static script
+    # In production, you would use the OpenAI API as shown below
+    
+    """
+    # Actual implementation with OpenAI (requires GPT-4 with vision)
+    response = openai.ChatCompletion.create(
+        model="gpt-4-vision-preview",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "Describe this image in detail and create a 30-second video essay script about it."},
+                    {"type": "image_url", "image_url": f"data:image/jpeg;base64,{image_to_base64(image_path)}"},
+                ],
+            }
+        ],
+        max_tokens=300,
+    )
+    return response.choices[0].message.content
+    """
+    
+    # Demo version with static response
+    return """This image appears to be a beautiful landscape photograph. In this 30-second video essay, 
+    we'll explore the composition and emotional impact of this scene. The golden hour lighting creates 
+    a warm, inviting atmosphere, while the leading lines draw our eye toward the distant mountains. 
+    Nature's grandeur is on full display here, reminding us of the importance of preserving such 
+    breathtaking environments for future generations."""
+
+def image_to_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)
+
+if __name__ == '__main__':
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    app.run(debug=True)
