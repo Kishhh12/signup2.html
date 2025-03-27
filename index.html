@@ -3,1598 +3,1122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Brand - Complete Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>AI Video Magic - Transform Your Ideas into Videos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* Global Styles */
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --accent-color: #4cc9f0;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --success-color: #4bb543;
-            --error-color: #ff3333;
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --accent: #4776e6;
+            --light: #f8f9fa;
+            --dark: #212529;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f7ff;
-            color: var(--dark-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fa;
         }
-
-        .hidden {
-            display: none !important;
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
         }
-
-        /* Navigation */
-        .nav-container {
-            background: white;
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(110, 72, 170, 0.4);
+            color: white;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
             position: fixed;
             width: 100%;
-            top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
         }
-
-        .nav-logo img {
-            height: 40px;
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
         }
-
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
         .nav-links {
             display: flex;
             list-style: none;
         }
-
+        
         .nav-links li {
-            margin-left: 1.5rem;
+            margin-left: 30px;
         }
-
+        
         .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-auth .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            text-decoration: none;
             font-weight: 500;
         }
-
-        .nav-auth .btn-login {
-            color: var(--primary-color);
-            margin-right: 0.5rem;
-        }
-
-        .nav-auth .btn-signup {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Main Content Container */
-        .main-content {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links li {
-            margin: 0 1rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* Page Transitions */
-        .page {
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Signup Page Styles */
-        .signup-container {
-            display: flex;
-            min-height: calc(100vh - 80px);
-        }
-
-        .illustration-section {
-            flex: 1;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .illustration-section::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            top: -100px;
-            right: -100px;
-        }
-
-        .illustration-section::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            bottom: -50px;
-            left: -50px;
-        }
-
-        .illustration-img {
-            max-width: 80%;
-            height: auto;
-            margin-bottom: 2rem;
-            z-index: 1;
-        }
-
-        .illustration-text {
-            text-align: center;
-            z-index: 1;
-        }
-
-        .illustration-text h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .form-container {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-        }
-
-        .form-title {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .form-title h1 {
-            font-size: 1.8rem;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-title p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .auth-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .auth-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background: white;
-            color: var(--dark-color);
-            font-weight: 500;
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            color: var(--primary);
         }
-
-        .auth-btn:hover {
-            background: #f5f5f5;
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            text-align: center;
         }
-
-        .auth-btn i {
-            margin-right: 10px;
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
             font-size: 1.2rem;
-        }
-
-        .google-btn {
-            border-color: #ddd;
-        }
-
-        .google-btn i {
-            color: #db4437;
-        }
-
-        .ai-btn {
-            background: linear-gradient(135deg, #7928ca, #ff0080);
-            color: white;
-            border: none;
-        }
-
-        .ai-btn:hover {
-            background: linear-gradient(135deg, #6a24b5, #e60073);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #ddd;
-        }
-
-        .divider::before {
-            margin-right: 1rem;
-        }
-
-        .divider::after {
-            margin-left: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-
-        .password-field {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #999;
-        }
-
-        .terms {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-
-        .terms input {
-            margin-right: 10px;
-            margin-top: 3px;
-        }
-
-        .terms label {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .terms a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: inherit;
-            font-weight: 500;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .login-link a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* AI Assistant Section */
-        .ai-assistant {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            display: none;
-        }
-
-        .ai-assistant.active {
-            display: block;
-        }
-
-        .ai-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .ai-header i {
-            color: #7928ca;
-            margin-right: 8px;
-        }
-
-        .ai-header h3 {
-            font-size: 0.95rem;
-            color: var(--dark-color);
-        }
-
-        .ai-message {
-            font-size: 0.85rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
             color: #555;
-            margin-bottom: 0.5rem;
         }
-
-        .ai-suggestions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0.5rem;
-        }
-
-        .ai-suggestion {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .ai-suggestion:hover {
-            background: #f0f0f0;
-        }
-
-        /* Password strength meter */
-        .password-strength {
-            height: 4px;
-            margin-top: 8px;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .password-strength.weak {
-            background-color: var(--error-color);
-            width: 25%;
-        }
-
-        .password-strength.moderate {
-            background-color: orange;
-            width: 50%;
-        }
-
-        .password-strength.strong {
-            background-color: var(--success-color);
-            width: 75%;
-        }
-
-        .password-strength.very-strong {
-            background-color: var(--success-color);
-            width: 100%;
-        }
-
-        /* Loading spinner */
-        .loading-spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Error message */
-        .error-message {
-            color: var(--error-color);
-            font-size: 0.8rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        /* Terms and Privacy Pages */
-        .legal-container {
+        
+        .hero-image {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
+            margin: 40px auto 0;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.5s ease;
         }
-
-        .legal-header {
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 60px;
         }
-
-        .legal-header h1 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
         }
-
-        .legal-section h2 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin: 1.5rem 0 1rem;
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
         }
-
-        .legal-section p, .legal-section ul {
-            margin-bottom: 1rem;
-        }
-
-        .legal-section ul {
-            padding-left: 1.5rem;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.5rem 1rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        /* Login Page */
-        .login-container {
-            display: flex;
-            min-height: calc(100vh - 80px);
-        }
-
-        /* Dashboard Page */
-        .dashboard-container {
-            display: flex;
-            min-height: calc(100vh - 80px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar-logo {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .sidebar-logo img {
-            height: 40px;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            color: var(--dark-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background: rgba(67, 97, 238, 0.1);
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            font-weight: 500;
-        }
-
-        /* Main Content */
-        .dashboard-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 2rem;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-header h1 {
-            font-size: 1.8rem;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .user-name {
-            font-weight: 500;
-        }
-
-        .logout-btn {
-            margin-left: 15px;
-            color: var(--error-color);
-            cursor: pointer;
-        }
-
-        /* Dashboard Cards */
-        .cards-container {
+        
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
-        .card {
-            background: white;
+        
+        .feature-card {
+            background-color: #f9f9f9;
             border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .card-header {
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
+        
+        .steps {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            margin-top: 50px;
         }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 500;
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            margin-bottom: 40px;
         }
-
-        .card-icon {
-            width: 40px;
-            height: 40px;
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(67, 97, 238, 0.1);
-            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
         }
-
-        .card-value {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        
+        .step h3 {
+            margin-bottom: 15px;
         }
-
-        .card-text {
-            color: #666;
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 80px;
+            color: rgba(110, 72, 170, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #777;
             font-size: 0.9rem;
         }
-
-        /* Recent Activity */
-        .recent-activity {
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Pricing Section (Added) */
+        .pricing {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
             background: white;
             border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
         }
-
-        .activity-list {
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #777;
+        }
+        
+        .pricing-features {
             list-style: none;
+            margin-bottom: 30px;
         }
-
-        .activity-item {
-            display: flex;
-            padding: 1rem 0;
+        
+        .pricing-features li {
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
-
-        .activity-item:last-child {
-            border-bottom: none;
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
         }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(67, 97, 238, 0.1);
-            color: var(--primary-color);
-            margin-right: 1rem;
-            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
         }
-
-        .activity-content {
-            flex: 1;
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
         }
-
-        .activity-title {
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal (Added) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        .modal h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
-            margin-bottom: 0.3rem;
         }
-
-        .activity-time {
-            color: #666;
-            font-size: 0.85rem;
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
         }
-
-        /* Responsive Design */
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Responsive Styles */
         @media (max-width: 992px) {
-            .signup-container, .login-container {
-                flex-direction: column;
-            }
-
-            .illustration-section {
-                padding: 1.5rem;
-            }
-
-            .illustration-img {
-                max-width: 60%;
-            }
-
-            .form-container {
-                padding: 2rem;
-            }
-
-            .sidebar {
-                width: 200px;
-                padding: 1rem;
+            .hero h1 {
+                font-size: 2.8rem;
             }
             
-            .dashboard-content {
-                margin-left: 200px;
+            .step {
+                flex: 100%;
+                margin-bottom: 40px;
             }
         }
-
+        
         @media (max-width: 768px) {
-            .illustration-section {
+            .nav-links {
                 display: none;
-            }
-
-            .form-section, .login-form-section {
-                padding: 1.5rem;
-            }
-
-            .form-container, .login-form-container {
-                padding: 1.5rem;
-                box-shadow: none;
-                background: transparent;
-            }
-
-            .auth-options {
-                flex-direction: column;
-            }
-
-            .dashboard-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
+                position: absolute;
+                top: 80px;
+                left: 0;
                 width: 100%;
-                position: relative;
-                height: auto;
-                padding: 1rem;
-                box-shadow: none;
-                border-bottom: 1px solid #eee;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
             
-            .dashboard-content {
-                margin-left: 0;
-                padding: 1.5rem;
+            .nav-links.active {
+                display: flex;
             }
             
-            .cards-container {
-                grid-template-columns: 1fr;
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .features, .how-it-works, .testimonials, .cta, .pricing {
+                padding: 80px 0;
             }
         }
-
+        
         @media (max-width: 576px) {
-            .nav-container {
-                flex-direction: column;
-                padding: 1rem;
+            .hero h1 {
+                font-size: 2rem;
             }
-
-            .nav-logo {
-                margin-bottom: 1rem;
+            
+            .hero p {
+                font-size: 1rem;
             }
-
-            .nav-links {
-                margin-bottom: 1rem;
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
-
-            .nav-auth {
-                display: flex;
-                justify-content: center;
-                width: 100%;
+            
+            .cta h2 {
+                font-size: 2rem;
             }
-
-            .footer-links {
-                flex-direction: column;
-            }
-
-            .footer-links li {
-                margin: 0.5rem 0;
+            
+            .modal-content {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="nav-logo">
-            <a href="#" onclick="showPage('home')">
-                <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo">
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#" onclick="showPage('home')">Home</a></li>
-            <li><a href="#" onclick="showPage('features')">Features</a></li>
-            <li><a href="#" onclick="showPage('pricing')">Pricing</a></li>
-            <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-        </ul>
-        <div class="nav-auth">
-            <a href="#" class="btn btn-login" onclick="showPage('login')">Login</a>
-            <a href="#" class="btn btn-signup" onclick="showPage('signup')">Sign Up</a>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Signup Page -->
-        <div id="signup-page" class="page signup-container">
-            <div class="illustration-section">
-                <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="Signup Illustration" class="illustration-img">
-                <div class="illustration-text">
-                    <h2>Join Our Community</h2>
-                    <p>Sign up to access exclusive features and personalized content powered by AI.</p>
-                </div>
-            </div>
-            
-            <div class="form-section">
-                <div class="form-container">
-                    <div class="form-title">
-                        <h1>Create Your Account</h1>
-                        <p>Get started with your free account</p>
-                    </div>
-                    
-                    <div class="auth-options">
-                        <button class="auth-btn google-btn" id="googleSignup">
-                            <i class="fab fa-google"></i> Sign up with Google
-                        </button>
-                        <button class="auth-btn ai-btn" id="aiSignup">
-                            <i class="fas fa-robot"></i> Sign up with AI Assistant
-                        </button>
-                    </div>
-                    
-                    <div class="divider">or</div>
-                    
-                    <form id="signupForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="password-field">
-                                <input type="password" id="password" class="form-control" placeholder="Create a password" required>
-                                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
-                            </div>
-                            <div class="password-strength" id="passwordStrength"></div>
-                        </div>
-                        
-                        <div class="terms">
-                            <input type="checkbox" id="terms" required>
-                            <label for="terms">I agree to the <a href="#" onclick="showPage('terms')">Terms of Service</a> and <a href="#" onclick="showPage('privacy')">Privacy Policy</a></label>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Create Account</button>
-                    </form>
-                    
-                    <div class="ai-assistant" id="aiAssistant">
-                        <div class="ai-header">
-                            <i class="fas fa-robot"></i>
-                            <h3>AI Signup Assistant</h3>
-                        </div>
-                        <p class="ai-message">I can help you create the perfect account. What would you like me to do?</p>
-                        <div class="ai-suggestions">
-                            <div class="ai-suggestion" id="generatePassword">Generate secure password</div>
-                            <div class="ai-suggestion" id="suggestUsername">Suggest username</div>
-                            <div class="ai-suggestion" id="personalizeExperience">Personalize my experience</div>
-                        </div>
-                    </div>
-                    
-                    <div class="login-link">
-                        Already have an account? <a href="#" onclick="showPage('login')">Log in</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Terms of Service Page -->
-        <div id="terms-page" class="page hidden">
-            <div class="legal-container">
-                <div class="legal-header">
-                    <h1>Terms of Service</h1>
-                    <p>Last Updated: January 1, 2023</p>
-                </div>
-
-                <div class="legal-section">
-                    <h2>1. Acceptance of Terms</h2>
-                    <p>By accessing or using our services, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
-                    
-                    <h2>2. Description of Service</h2>
-                    <p>We provide a platform that allows users to [brief description of your service]. The service may change over time.</p>
-                    
-                    <h2>3. User Responsibilities</h2>
-                    <p>As a user of our service, you agree to:</p>
-                    <ul>
-                        <li>Provide accurate and complete registration information</li>
-                        <li>Maintain the confidentiality of your account credentials</li>
-                        <li>Use the service in compliance with all applicable laws</li>
-                        <li>Not engage in any activity that disrupts or interferes with our service</li>
-                    </ul>
-                    
-                    <h2>4. Intellectual Property</h2>
-                    <p>All content and materials available on our platform, including but not limited to text, graphics, logos, and software, are our property or the property of our licensors.</p>
-                    
-                    <h2>5. Termination</h2>
-                    <p>We may terminate or suspend your account immediately, without prior notice, for any reason whatsoever, including without limitation if you breach these Terms.</p>
-                    
-                    <h2>6. Limitation of Liability</h2>
-                    <p>In no event shall we be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of or inability to use the service.</p>
-                    
-                    <h2>7. Changes to Terms</h2>
-                    <p>We reserve the right to modify these terms at any time. We will notify users of any changes by posting the new Terms on this page.</p>
-                    
-                    <h2>8. Contact Us</h2>
-                    <p>If you have any questions about these Terms, please contact us at legal@yourbrand.com.</p>
-
-                    <a href="#" class="back-btn" onclick="showPage('signup')">Back to Sign Up</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Privacy Policy Page -->
-        <div id="privacy-page" class="page hidden">
-            <div class="legal-container">
-                <div class="legal-header">
-                    <h1>Privacy Policy</h1>
-                    <p>Last Updated: January 1, 2023</p>
-                </div>
-
-                <div class="legal-section">
-                    <h2>1. Information We Collect</h2>
-                    <p>We collect several types of information from and about users of our website, including:</p>
-                    <ul>
-                        <li>Personal identification information (Name, email address, etc.)</li>
-                        <li>Technical data (IP address, browser type, etc.)</li>
-                        <li>Usage data (pages visited, time spent, etc.)</li>
-                    </ul>
-                    
-                    <h2>2. How We Use Your Information</h2>
-                    <p>We use the information we collect for various purposes:</p>
-                    <ul>
-                        <li>To provide and maintain our service</li>
-                        <li>To notify you about changes to our service</li>
-                        <li>To provide customer support</li>
-                        <li>To gather analysis to improve our service</li>
-                        <li>To monitor usage of our service</li>
-                    </ul>
-                    
-                    <h2>3. Data Security</h2>
-                    <p>We implement appropriate data collection, storage and processing practices to protect against unauthorized access, alteration, disclosure or destruction of your personal information.</p>
-                    
-                    <h2>4. Sharing Your Information</h2>
-                    <p>We do not sell, trade, or rent users' personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information.</p>
-                    
-                    <h2>5. Cookies</h2>
-                    <p>We use "cookies" to enhance user experience. Users may choose to set their web browser to refuse cookies, but this may affect certain functionality.</p>
-                    
-                    <h2>6. Your Rights</h2>
-                    <p>You have the right to:</p>
-                    <ul>
-                        <li>Access, update or delete your personal information</li>
-                        <li>Object to our processing of your personal data</li>
-                        <li>Request restriction of processing your personal information</li>
-                        <li>Request transfer of your personal data</li>
-                        <li>Withdraw your consent</li>
-                    </ul>
-                    
-                    <h2>7. Changes to This Policy</h2>
-                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
-                    
-                    <h2>8. Contact Us</h2>
-                    <p>If you have any questions about this Privacy Policy, please contact us at privacy@yourbrand.com.</p>
-
-                    <a href="#" class="back-btn" onclick="showPage('signup')">Back to Sign Up</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Login Page -->
-        <div id="login-page" class="page hidden login-container">
-            <div class="illustration-section">
-                <img src="https://illustrations.popsy.co/amber/security.svg" alt="Login Illustration" class="illustration-img">
-                <div class="illustration-text">
-                    <h2>Welcome Back</h2>
-                    <p>Login to access your personalized dashboard and features.</p>
-                </div>
-            </div>
-            
-            <div class="form-section">
-                <div class="form-container">
-                    <div class="form-title">
-                        <h1>Login to Your Account</h1>
-                        <p>Enter your credentials to continue</p>
-                    </div>
-                    
-                    <div class="auth-options">
-                        <button class="auth-btn google-btn" id="googleLogin">
-                            <i class="fab fa-google"></i> Login with Google
-                        </button>
-                    </div>
-                    
-                    <div class="divider">or</div>
-                    
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="login-email">Email Address</label>
-                            <input type="email" id="login-email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="login-password">Password</label>
-                            <div class="password-field">
-                                <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
-                                <i class="fas fa-eye toggle-password" id="toggleLoginPassword"></i>
-                            </div>
-                            <div class="forgot-password">
-                                <a href="#" onclick="alert('Password reset link would be sent to your email')">Forgot password?</a>
-                            </div>
-                        </div>
-                        
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Login</button>
-                    </form>
-                    
-                    <div class="signup-link">
-                        Don't have an account? <a href="#" onclick="showPage('signup')">Sign up</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dashboard Page -->
-        <div id="dashboard-page" class="page hidden dashboard-container">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar-logo">
-                    <a href="#"><img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo"></a>
-                </div>
-                
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="fas fa-home"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Analytics</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-user"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-question-circle"></i>
-                            <span>Help</span>
-                        </a>
-                    </li>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">AI<span>Video</span>Magic</a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#" class="btn" id="try-it-free">Try It Free</a></li>
                 </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Transform Your Ideas Into Stunning Videos</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Our AI-powered platform creates professional-quality videos in minutes. No technical skills required - just your imagination!</p>
+            <a href="#" class="btn animate__animated animate__fadeInUp animate__delay-2s" id="get-started">Get Started Now</a>
+            <div class="hero-image animate__animated animate__fadeIn animate__delay-3s">
+                <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Video Creation">
             </div>
-            
-            <!-- Main Content -->
-            <div class="dashboard-content">
-                <div class="dashboard-header">
-                    <h1>Dashboard</h1>
-                    <div class="user-profile">
-                        <img src="https://via.placeholder.com/40x40?text=JD" alt="User Avatar">
-                        <span class="user-name">John Doe</span>
-                        <span class="logout-btn" id="logoutBtn">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Discover how our AI video generator can revolutionize your content creation process</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
                     </div>
+                    <h3>One-Click Generation</h3>
+                    <p>Transform text prompts or images into high-quality videos with just one click.</p>
                 </div>
-                
-                <!-- Dashboard Cards -->
-                <div class="cards-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Total Users</h3>
-                            <div class="card-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <div class="card-value">1,254</div>
-                        <p class="card-text">+12% from last month</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
                     </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Revenue</h3>
-                            <div class="card-icon">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                        </div>
-                        <div class="card-value">$24,780</div>
-                        <p class="card-text">+8% from last month</p>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Active Projects</h3>
-                            <div class="card-icon">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                        </div>
-                        <div class="card-value">42</div>
-                        <p class="card-text">5 new this week</p>
-                    </div>
+                    <h3>Multiple Styles</h3>
+                    <p>Choose from various video styles including animation, cinematic, and more.</p>
                 </div>
-                
-                <!-- Recent Activity -->
-                <div class="recent-activity">
-                    <h2 class="section-title">Recent Activity</h2>
-                    <ul class="activity-list">
-                        <li class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h3 class="activity-title">New user registered</h3>
-                                <p class="activity-time">10 minutes ago</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-file-invoice-dollar"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h3 class="activity-title">New invoice #1234 created</h3>
-                                <p class="activity-time">2 hours ago</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h3 class="activity-title">Project "Dashboard UI" completed</h3>
-                                <p class="activity-time">Yesterday</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h3 class="activity-title">System maintenance scheduled</h3>
-                                <p class="activity-time">2 days ago</p>
-                            </div>
-                        </li>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Auto Soundtrack</h3>
+                    <p>Our AI adds perfectly matched background music to your videos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Multi-Language</h3>
+                    <p>Create videos in dozens of languages with accurate voiceovers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Custom Controls</h3>
+                    <p>Fine-tune every aspect of your video with advanced editing tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate videos in minutes, not hours. Perfect for tight deadlines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Creating amazing videos has never been easier</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Describe Your Vision</h3>
+                    <p>Enter a text prompt or upload an image that describes what you want to create.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Customize Settings</h3>
+                    <p>Choose your preferred style, duration, and other parameters.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Generate Video</h3>
+                    <p>Our AI works its magic to create your video in just minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Download & Share</h3>
+                    <p>Download your video or share it directly to social media platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (Added) -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your needs</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$19<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>10 video generations/month</li>
+                        <li>720p resolution</li>
+                        <li>Basic video styles</li>
+                        <li>5 music tracks</li>
+                        <li>Email support</li>
                     </ul>
+                    <a href="#" class="btn" data-plan="starter">Choose Plan</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div class="price">$49<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>50 video generations/month</li>
+                        <li>1080p resolution</li>
+                        <li>All video styles</li>
+                        <li>20 music tracks</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn" data-plan="professional">Choose Plan</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited generations</li>
+                        <li>4K resolution</li>
+                        <li>All premium styles</li>
+                        <li>Unlimited music</li>
+                        <li>24/7 dedicated support</li>
+                    </ul>
+                    <a href="#" class="btn" data-plan="enterprise">Choose Plan</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Placeholder Pages -->
-        <div id="home-page" class="page hidden">
-            <div style="padding: 4rem 2rem; text-align: center;">
-                <h1>Welcome to Our Platform</h1>
-                <p>This would be your home page content</p>
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Thousands of creators are already using AI Video Magic</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>This platform has completely transformed my content creation process. I can now produce high-quality videos in minutes that used to take me days!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Marketing Director</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>As a small business owner, I couldn't afford professional video production. AI Video Magic gives me studio-quality results at a fraction of the cost.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Michael Thompson</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The AI understands my creative vision better than some human editors I've worked with. It's like having a professional video team at my fingertips.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily R." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div id="features-page" class="page hidden">
-            <div style="padding: 4rem 2rem; text-align: center;">
-                <h1>Our Features</h1>
-                <p>This would be your features page content</p>
-            </div>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Create Amazing Videos?</h2>
+            <p>Join thousands of creators who are saving time and money with AI Video Magic. Start your free trial today!</p>
+            <a href="#" class="btn" id="start-trial">Start Free Trial</a>
         </div>
-
-        <div id="pricing-page" class="page hidden">
-            <div style="padding: 4rem 2rem; text-align: center;">
-                <h1>Pricing Plans</h1>
-                <p>This would be your pricing page content</p>
-            </div>
-        </div>
-
-        <div id="contact-page" class="page hidden">
-            <div style="padding: 4rem 2rem; text-align: center;">
-                <h1>Contact Us</h1>
-                <p>This would be your contact page content</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <ul class="footer-links">
-            <li><a href="#" onclick="showPage('terms')">Terms of Service</a></li>
-            <li><a href="#" onclick="showPage('privacy')">Privacy Policy</a></li>
-            <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
-            <li><a href="#" onclick="showPage('about')">About</a></li>
-        </ul>
-        <p class="copyright">© 2023 Your Brand. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AI Video Magic</h3>
+                    <p>Transforming ideas into stunning videos with the power of artificial intelligence.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="api-docs.html">API Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="gdpr.html">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AI Video Magic. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Signup Modal (Added) -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Start Your Free Trial</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="plan">Select Plan</label>
+                    <select id="plan" name="plan">
+                        <option value="starter">Starter - $19/month</option>
+                        <option value="professional" selected>Professional - $49/month</option>
+                        <option value="enterprise">Enterprise - $99/month</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal (Added) -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">Don't have an account? <a href="#" id="switch-to-signup">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Video Demo Modal (Added) -->
+    <div class="modal" id="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>See AI Video Magic in Action</h2>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 20px 0;">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+            </div>
+            <p>Watch how quickly you can transform your ideas into professional videos with our AI technology.</p>
+        </div>
+    </div>
+
     <script>
-        // Page Navigation
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-            
-            // Show the selected page
-            document.getElementById(`${pageId}-page`).classList.remove('hidden');
-            
-            // Update URL without reloading
-            history.pushState({page: pageId}, `${pageId}`, `#${pageId}`);
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            // Update navigation menu active state
-            updateNavActiveState(pageId);
-        }
-
-        function updateNavActiveState(pageId) {
-            // Update navigation menu active state if needed
-        }
-
-        // Handle back/forward browser buttons
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.page) {
-                showPage(event.state.page);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                showPage('signup');
+                header.classList.remove('scrolled');
             }
         });
-
-        // Initialize - show signup page by default
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check URL hash
-            const hash = window.location.hash.substring(1);
-            const validPages = ['signup', 'terms', 'privacy', 'login', 'dashboard', 'home', 'features', 'pricing', 'contact'];
-            
-            if (hash && validPages.includes(hash)) {
-                showPage(hash);
-            } else {
-                showPage('signup');
+        
+        // Modal functionality
+        const signupModal = document.getElementById('signup-modal');
+        const loginModal = document.getElementById('login-modal');
+        const demoModal = document.getElementById('demo-modal');
+        
+        // Open modal buttons
+        document.getElementById('try-it-free').addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        document.getElementById('get-started').addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        document.getElementById('start-trial').addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close modal buttons
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                signupModal.style.display = 'none';
+                loginModal.style.display = 'none';
+                demoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Switch between login and signup
+        document.getElementById('switch-to-signup').addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'flex';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
-
-            // Signup Page Functionality
-            const togglePassword = document.getElementById('togglePassword');
-            const password = document.getElementById('password');
-            const passwordStrength = document.getElementById('passwordStrength');
-            const signupForm = document.getElementById('signupForm');
-            const googleSignupBtn = document.getElementById('googleSignup');
-            const aiSignupBtn = document.getElementById('aiSignup');
-            const aiAssistant = document.getElementById('aiAssistant');
-            const generatePasswordBtn = document.getElementById('generatePassword');
-            const suggestUsernameBtn = document.getElementById('suggestUsername');
-            const personalizeExperienceBtn = document.getElementById('personalizeExperience');
-
-            // Toggle password visibility
-            if (togglePassword) {
-                togglePassword.addEventListener('click', function() {
-                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                    password.setAttribute('type', type);
-                    this.classList.toggle('fa-eye-slash');
-                });
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
-
-            // Password strength indicator
-            if (password) {
-                password.addEventListener('input', function() {
-                    const strength = calculatePasswordStrength(this.value);
-                    passwordStrength.className = 'password-strength ' + strength.class;
-                    passwordStrength.title = strength.text;
-                });
-            }
-
-            // Google Signup
-            if (googleSignupBtn) {
-                googleSignupBtn.addEventListener('click', function() {
-                    alert('Redirecting to Google authentication...');
-                });
-            }
-
-            // AI Signup Assistant
-            if (aiSignupBtn) {
-                aiSignupBtn.addEventListener('click', function() {
-                    aiAssistant.classList.toggle('active');
-                });
-            }
-
-            // AI Assistant Features
-            if (generatePasswordBtn) {
-                generatePasswordBtn.addEventListener('click', function() {
-                    const strongPassword = generateStrongPassword();
-                    password.value = strongPassword;
-                    password.dispatchEvent(new Event('input'));
-                    aiAssistant.classList.remove('active');
-                });
-            }
-
-            if (suggestUsernameBtn) {
-                suggestUsernameBtn.addEventListener('click', function() {
-                    const email = document.getElementById('email').value;
-                    if (email) {
-                        const username = generateUsernameFromEmail(email);
-                        document.getElementById('name').value = username;
-                    }
-                    aiAssistant.classList.remove('active');
-                });
-            }
-
-            if (personalizeExperienceBtn) {
-                personalizeExperienceBtn.addEventListener('click', function() {
-                    alert('Personalization features will be available after signup!');
-                    aiAssistant.classList.remove('active');
-                });
-            }
-
-            // Form submission
-            if (signupForm) {
-                signupForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const passwordVal = password.value;
-                    const terms = document.getElementById('terms').checked;
-
-                    // Validate form
-                    if (!validateForm(name, email, passwordVal, terms)) {
-                        return;
-                    }
-
-                    // Show loading state
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = 'Creating Account... <span class="loading-spinner"></span>';
-                    document.querySelector('.loading-spinner').style.display = 'inline-block';
-
-                    // Simulate backend API call
-                    setTimeout(() => {
-                        // Simulate successful signup 90% of the time
-                        const isSuccess = Math.random() < 0.9;
-                        
-                        if (isSuccess) {
-                            showPage('dashboard');
-                        } else {
-                            alert('Signup failed. The email may already be in use.');
-                        }
-                        
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = 'Create Account';
-                        document.querySelector('.loading-spinner').style.display = 'none';
-                    }, 1500);
-                });
-            }
-
-            // Login Page Functionality
-            const toggleLoginPassword = document.getElementById('toggleLoginPassword');
-            const loginPassword = document.getElementById('login-password');
-            const loginForm = document.getElementById('loginForm');
-            const googleLoginBtn = document.getElementById('googleLogin');
-
-            if (toggleLoginPassword && loginPassword) {
-                toggleLoginPassword.addEventListener('click', function() {
-                    const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-                    loginPassword.setAttribute('type', type);
-                    this.classList.toggle('fa-eye-slash');
-                });
-            }
-
-            if (googleLoginBtn) {
-                googleLoginBtn.addEventListener('click', function() {
-                    alert('Redirecting to Google login...');
-                });
-            }
-
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const email = document.getElementById('login-email').value.trim();
-                    const passwordVal = loginPassword.value;
-                    const remember = document.getElementById('remember').checked;
-
-                    // Show loading state
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = 'Logging in... <span class="loading-spinner"></span>';
-                    document.querySelector('.loading-spinner').style.display = 'inline-block';
-
-                    // Simulate backend API call
-                    setTimeout(() => {
-                        // Simulate successful login 90% of the time
-                        const isSuccess = Math.random() < 0.9;
-                        
-                        if (isSuccess) {
-                            showPage('dashboard');
-                        } else {
-                            alert('Login failed. Please check your credentials and try again.');
-                        }
-                        
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = 'Login';
-                        document.querySelector('.loading-spinner').style.display = 'none';
-                    }, 1500);
-                });
-            }
-
-            // Dashboard Functionality
-            const logoutBtn = document.getElementById('logoutBtn');
-
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function() {
-                    if (confirm('Are you sure you want to logout?')) {
-                        showPage('login');
-                    }
-                });
+            if (e.target === demoModal) {
+                demoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
-
-        // Helper functions
-        function calculatePasswordStrength(password) {
-            const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})/;
-            const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+        
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the data to your backend
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
             
-            if (strongRegex.test(password)) {
-                return { class: 'very-strong', text: 'Very strong password' };
-            } else if (mediumRegex.test(password)) {
-                return { class: 'strong', text: 'Strong password' };
-            } else if (password.length >= 6) {
-                return { class: 'moderate', text: 'Moderate password' };
-            } else if (password.length > 0) {
-                return { class: 'weak', text: 'Weak password' };
-            } else {
-                return { class: '', text: '' };
-            }
-        }
-
-        function generateStrongPassword() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
-            let password = '';
-            for (let i = 0; i < 12; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return password;
-        }
-
-        function generateUsernameFromEmail(email) {
-            return email.split('@')[0].replace(/[^a-zA-Z0-9]/g, '') + 
-                   Math.floor(Math.random() * 1000).toString();
-        }
-
-        function validateForm(name, email, password, terms) {
-            let isValid = true;
+            console.log('Signup form submitted:', data);
             
-            // Clear previous errors
-            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            // Simulate successful signup
+            alert(`Thank you for signing up, ${data.name}! Your ${data.plan} plan trial has started.`);
+            signupModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the data to your backend
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
             
-            // Name validation
-            if (!name) {
-                showError('Please enter your full name', 'name');
-                isValid = false;
-            }
+            console.log('Login form submitted:', data);
             
-            // Email validation
-            if (!email) {
-                showError('Please enter your email', 'email');
-                isValid = false;
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                showError('Please enter a valid email address', 'email');
-                isValid = false;
-            }
+            // Simulate successful login
+            alert('Login successful! Redirecting to your dashboard...');
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Pricing plan selection
+        document.querySelectorAll('[data-plan]').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const plan = this.getAttribute('data-plan');
+                document.getElementById('plan').value = plan;
+                signupModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Demo video buttons (you can add these to your HTML where needed)
+        document.querySelectorAll('.demo-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                demoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .step, .testimonial-card, .pricing-card');
             
-            // Password validation
-            if (!password) {
-                showError('Please enter a password', 'password');
-                isValid = false;
-            } else if (password.length < 8) {
-                showError('Password must be at least 8 characters', 'password');
-                isValid = false;
-            }
-            
-            // Terms validation
-            if (!terms) {
-                showError('You must agree to the terms and conditions', 'terms');
-                isValid = false;
-            }
-            
-            return isValid;
-        }
-
-        function showError(message, fieldId = null) {
-            const errorElement = document.createElement('div');
-            errorElement.className = 'error-message';
-            errorElement.textContent = message;
-            
-            if (fieldId) {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    field.parentNode.insertBefore(errorElement, field.nextSibling);
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
                 }
-            } else {
-                // Global error (show at top of form)
-                const formTitle = document.querySelector('.form-title');
-                formTitle.insertAdjacentElement('afterend', errorElement);
-            }
+            });
         }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check in case elements are already in view
+        animateOnScroll();
     </script>
 </body>
 </html>
