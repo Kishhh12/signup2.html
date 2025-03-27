@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Content Generator | Create Images & Videos</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #4361ee;
@@ -50,14 +48,6 @@
       font-weight: 700;
       color: var(--primary-color);
       margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .logo i {
-      color: var(--accent-color);
     }
 
     .tagline {
@@ -84,13 +74,6 @@
       color: var(--primary-color);
       margin-bottom: 20px;
       font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    h2 i {
-      color: var(--accent-color);
     }
 
     .input-group {
@@ -151,12 +134,6 @@
       background-color: rgba(76, 201, 240, 0.05);
     }
 
-    .file-upload-label i {
-      font-size: 2rem;
-      color: var(--accent-color);
-      margin-bottom: 10px;
-    }
-
     .file-name {
       margin-top: 10px;
       font-size: 0.9rem;
@@ -175,10 +152,6 @@
       font-weight: 500;
       cursor: pointer;
       transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
     }
 
     button:hover {
@@ -262,24 +235,6 @@
       font-size: 0.9rem;
     }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .social-links a {
-      color: var(--primary-color);
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
-
-    .social-links a:hover {
-      color: var(--accent-color);
-      transform: translateY(-3px);
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       .container {
@@ -320,21 +275,20 @@
   <div class="container">
     <header>
       <div class="logo">
-        <i class="fas fa-robot"></i>
-        <span>AI Content Generator</span>
+        AI Content Generator
       </div>
       <p class="tagline">Transform your ideas into stunning visuals with AI-powered creativity</p>
     </header>
 
     <!-- Text to Image Section -->
     <div class="section">
-      <h2><i class="fas fa-image"></i> Text to AI Image</h2>
+      <h2>Text to AI Image</h2>
       <div class="input-group">
         <label for="text-to-image-prompt">Describe the image you want to generate:</label>
         <textarea id="text-to-image-prompt" placeholder="Example: A futuristic cityscape at sunset with flying cars and neon lights..."></textarea>
       </div>
       <button id="generate-image-btn">
-        <i class="fas fa-magic"></i> Generate Image
+        Generate Image
       </button>
       <div class="loading" id="image-loading">
         <div class="spinner"></div>
@@ -342,22 +296,20 @@
       </div>
       <div id="image-result" class="result">
         <div class="result-placeholder">
-          <i class="fas fa-image" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
-          <p>Your generated image will appear here</p>
+          Your generated image will appear here
         </div>
       </div>
     </div>
 
     <!-- Image to Video Section -->
     <div class="section">
-      <h2><i class="fas fa-video"></i> Image to Video</h2>
+      <h2>Image to Video</h2>
       <div class="input-group">
         <label>Upload an image to animate:</label>
         <div class="file-upload">
           <input type="file" id="image-upload" accept="image/*">
           <label for="image-upload" class="file-upload-label">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Click to upload or drag and drop</p>
+            Click to upload or drag and drop
             <p class="file-name" id="upload-filename">No file selected</p>
           </label>
         </div>
@@ -367,7 +319,7 @@
         <textarea id="image-to-video-prompt" placeholder="Example: Animate the water to flow and the trees to sway gently in the wind..."></textarea>
       </div>
       <button id="generate-video-btn">
-        <i class="fas fa-film"></i> Generate Video
+        Generate Video
       </button>
       <div class="loading" id="video-loading">
         <div class="spinner"></div>
@@ -375,8 +327,7 @@
       </div>
       <div id="video-result" class="result">
         <div class="result-placeholder">
-          <i class="fas fa-video" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
-          <p>Your generated video will appear here</p>
+          Your generated video will appear here
         </div>
       </div>
     </div>
@@ -384,12 +335,6 @@
 
   <footer>
     <p>© 2023 AI Content Generator. All rights reserved.</p>
-    <div class="social-links">
-      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
   </footer>
 
   <script>
@@ -426,33 +371,53 @@
       try {
         // Show loading state
         generateImageBtn.disabled = true;
-        generateImageBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+        generateImageBtn.textContent = 'Generating...';
         imageLoading.style.display = "block";
         
         // Simulate API call with timeout
         await new Promise(resolve => setTimeout(resolve, 2000));
         
-        // Mock response with placeholder image
-        const mockImageUrl = `https://source.unsplash.com/random/800x600/?${encodeURIComponent(prompt)}`;
+        // Create a placeholder image using canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 600;
+        const ctx = canvas.getContext('2d');
+        
+        // Draw gradient background
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#4361ee');
+        gradient.addColorStop(1, '#4cc9f0');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add text
+        ctx.fillStyle = 'white';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('AI Generated Image', canvas.width/2, canvas.height/2);
+        ctx.font = '20px Arial';
+        ctx.fillText(prompt, canvas.width/2, canvas.height/2 + 40);
+        
+        // Convert to data URL
+        const imageUrl = canvas.toDataURL('image/jpeg');
         
         // Display result
         imageResult.innerHTML = `
-          <img src="${mockImageUrl}" alt="Generated image from prompt: ${prompt}">
-          <a href="${mockImageUrl}" download="ai-generated-image.jpg" class="download-btn">
-            <i class="fas fa-download"></i> Download Image
-          </a>
+          <img src="${imageUrl}" alt="Generated image from prompt: ${prompt}">
+          <button onclick="downloadImage('${imageUrl}')" class="download-btn">
+            Download Image
+          </button>
         `;
       } catch (error) {
         console.error("Error:", error);
         imageResult.innerHTML = `
           <div style="color: var(--error-color);">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Failed to generate image. Please try again.</p>
+            Failed to generate image. Please try again.
           </div>
         `;
       } finally {
         generateImageBtn.disabled = false;
-        generateImageBtn.innerHTML = '<i class="fas fa-magic"></i> Generate Image';
+        generateImageBtn.textContent = 'Generate Image';
         imageLoading.style.display = "none";
       }
     }
@@ -475,38 +440,49 @@
       try {
         // Show loading state
         generateVideoBtn.disabled = true;
-        generateVideoBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        generateVideoBtn.textContent = 'Processing...';
         videoLoading.style.display = "block";
         
         // Simulate API processing with longer timeout
         await new Promise(resolve => setTimeout(resolve, 4000));
         
-        // Mock response with placeholder video
-        const mockVideoUrl = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
-        
-        // Display result
+        // Create a simple animated placeholder
         videoResult.innerHTML = `
-          <video controls autoplay loop>
-            <source src="${mockVideoUrl}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <a href="${mockVideoUrl}" download="ai-generated-video.mp4" class="download-btn" style="margin-top: 20px;">
-            <i class="fas fa-download"></i> Download Video
-          </a>
+          <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #4361ee, #4cc9f0); 
+              border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center;
+              color: white; font-size: 24px; text-align: center;">
+            <div>
+              <p>AI Generated Video Preview</p>
+              <p style="font-size: 16px;">${prompt}</p>
+              <p style="font-size: 14px; margin-top: 20px;">(Actual implementation would show real video)</p>
+            </div>
+          </div>
+          <button onclick="alert('In a real implementation, this would download the video')" class="download-btn" style="margin-top: 20px;">
+            Download Video
+          </button>
         `;
       } catch (error) {
         console.error("Error:", error);
         videoResult.innerHTML = `
           <div style="color: var(--error-color);">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Failed to generate video. Please try again.</p>
+            Failed to generate video. Please try again.
           </div>
         `;
       } finally {
         generateVideoBtn.disabled = false;
-        generateVideoBtn.innerHTML = '<i class="fas fa-film"></i> Generate Video';
+        generateVideoBtn.textContent = 'Generate Video';
         videoLoading.style.display = "none";
       }
+    }
+
+    // Download Image Function
+    function downloadImage(dataUrl) {
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'ai-generated-image.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     // Event Listeners
