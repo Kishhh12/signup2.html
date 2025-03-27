@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Your Brand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --error-color: #ff3333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .illustration-section {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illustration-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -100px;
+            right: -100px;
+        }
+
+        .illustration-section::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .illustration-img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 2rem;
+            z-index: 1;
+        }
+
+        .illustration-text {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .illustration-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo img {
+            max-height: 50px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title h1 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-title p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .auth-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            color: var(--dark-color);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .auth-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .google-btn {
+            border-color: #ddd;
+        }
+
+        .google-btn i {
+            color: #db4437;
+        }
+
+        .ai-btn {
+            background: linear-gradient(135deg, #7928ca, #ff0080);
+            color: white;
+            border: none;
+        }
+
+        .ai-btn:hover {
+            background: linear-gradient(135deg, #6a24b5, #e60073);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before {
+            margin-right: 1rem;
+        }
+
+        .divider::after {
+            margin-left: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .password-field {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .terms label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .terms a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* AI Assistant Section */
+        .ai-assistant {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .ai-assistant.active {
+            display: block;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-header i {
+            color: #7928ca;
+            margin-right: 8px;
+        }
+
+        .ai-header h3 {
+            font-size: 0.95rem;
+            color: var(--dark-color);
+        }
+
+        .ai-message {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .ai-suggestion {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ai-suggestion:hover {
+            background: #f0f0f0;
+        }
+
+        /* Password strength meter */
+        .password-strength {
+            height: 4px;
+            margin-top: 8px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .password-strength.weak {
+            background-color: var(--error-color);
+            width: 25%;
+        }
+
+        .password-strength.moderate {
+            background-color: orange;
+            width: 50%;
+        }
+
+        .password-strength.strong {
+            background-color: var(--success-color);
+            width: 75%;
+        }
+
+        .password-strength.very-strong {
+            background-color: var(--success-color);
+            width: 100%;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error message */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .illustration-section {
+                padding: 1.5rem;
+            }
+
+            .illustration-img {
+                max-width: 60%;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .illustration-section {
+                display: none;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+                box-shadow: none;
+                background: transparent;
+            }
+
+            .auth-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="illustration-section">
+            <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="Signup Illustration" class="illustration-img">
+            <div class="illustration-text">
+                <h2>Join Our Community</h2>
+                <p>Sign up to access exclusive features and personalized content powered by AI.</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo">
+                    </a>
+                </div>
+                
+                <div class="form-title">
+                    <h1>Create Your Account</h1>
+                    <p>Get started with your free account</p>
+                </div>
+                
+                <div class="auth-options">
+                    <button class="auth-btn google-btn" id="googleSignup">
+                        <i class="fab fa-google"></i> Sign up with Google
+                    </button>
+                    <button class="auth-btn ai-btn" id="aiSignup">
+                        <i class="fas fa-robot"></i> Sign up with AI Assistant
+                    </button>
+                </div>
+                
+                <div class="divider">or</div>
+                
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-field">
+                            <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                        </div>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+                    
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+                
+                <div class="ai-assistant" id="aiAssistant">
+                    <div class="ai-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI Signup Assistant</h3>
+                    </div>
+                    <p class="ai-message">I can help you create the perfect account. What would you like me to do?</p>
+                    <div class="ai-suggestions">
+                        <div class="ai-suggestion" id="generatePassword">Generate secure password</div>
+                        <div class="ai-suggestion" id="suggestUsername">Suggest username</div>
+                        <div class="ai-suggestion" id="personalizeExperience">Personalize my experience</div>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account? <a href="#" onclick="showLogin()">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backend Simulation Modal -->
+    <div id="backendModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;">
+        <div style="background:white;padding:2rem;border-radius:10px;max-width:500px;width:90%;">
+            <h2 id="modalTitle">Backend Response</h2>
+            <p id="modalMessage">Processing your request...</p>
+            <button onclick="closeModal()" style="margin-top:1rem;padding:0.5rem 1rem;background:var(--primary-color);color:white;border:none;border-radius:5px;cursor:pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Frontend functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const signupForm = document.getElementById('signupForm');
+            const googleSignupBtn = document.getElementById('googleSignup');
+            const aiSignupBtn = document.getElementById('aiSignup');
+            const aiAssistant = document.getElementById('aiAssistant');
+            const generatePasswordBtn = document.getElementById('generatePassword');
+            const suggestUsernameBtn = document.getElementById('suggestUsername');
+            const personalizeExperienceBtn = document.getElementById('personalizeExperience');
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            // Password strength indicator
+            password.addEventListener('input', function() {
+                const strength = calculatePasswordStrength(this.value);
+                passwordStrength.className = 'password-strength ' + strength.class;
+                passwordStrength.title = strength.text;
+            });
+
+            // Google Signup
+            googleSignupBtn.addEventListener('click', function() {
+                showModal("Google Signup", "Redirecting to Google authentication...");
+                // Simulate Google OAuth response after delay
+                setTimeout(() => {
+                    simulateGoogleSignup();
+                }, 1500);
+            });
+
+            // AI Signup Assistant
+            aiSignupBtn.addEventListener('click', function() {
+                aiAssistant.classList.toggle('active');
+            });
+
+            // AI Assistant Features
+            generatePasswordBtn.addEventListener('click', function() {
+                const strongPassword = generateStrongPassword();
+                password.value = strongPassword;
+                password.dispatchEvent(new Event('input'));
+                aiAssistant.classList.remove('active');
+            });
+
+            suggestUsernameBtn.addEventListener('click', function() {
+                const email = document.getElementById('email').value;
+                if (email) {
+                    const username = generateUsernameFromEmail(email);
+                    document.getElementById('name').value = username;
+                }
+                aiAssistant.classList.remove('active');
+            });
+
+            personalizeExperienceBtn.addEventListener('click', function() {
+                showModal("Personalization", "Personalization features will be available after signup!");
+                aiAssistant.classList.remove('active');
+            });
+
+            // Form submission
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const passwordVal = password.value;
+                const terms = document.getElementById('terms').checked;
+
+                // Validate form
+                if (!validateForm(name, email, passwordVal, terms)) {
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Creating Account... <span class="loading-spinner"></span>';
+                document.querySelector('.loading-spinner').style.display = 'inline-block';
+
+                // Simulate backend API call
+                setTimeout(() => {
+                    simulateBackendSignup(name, email, passwordVal);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Create Account';
+                    document.querySelector('.loading-spinner').style.display = 'none';
+                }, 2000);
+            });
+
+            // Helper functions
+            function calculatePasswordStrength(password) {
+                const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})/;
+                const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+                
+                if (strongRegex.test(password)) {
+                    return { class: 'very-strong', text: 'Very strong password' };
+                } else if (mediumRegex.test(password)) {
+                    return { class: 'strong', text: 'Strong password' };
+                } else if (password.length >= 6) {
+                    return { class: 'moderate', text: 'Moderate password' };
+                } else if (password.length > 0) {
+                    return { class: 'weak', text: 'Weak password' };
+                } else {
+                    return { class: '', text: '' };
+                }
+            }
+
+            function generateStrongPassword() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+                let password = '';
+                for (let i = 0; i < 12; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return password;
+            }
+
+            function generateUsernameFromEmail(email) {
+                return email.split('@')[0].replace(/[^a-zA-Z0-9]/g, '') + 
+                       Math.floor(Math.random() * 1000).toString();
+            }
+
+            function validateForm(name, email, password, terms) {
+                let isValid = true;
+                
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(el => el.remove());
+                
+                // Name validation
+                if (!name) {
+                    showError('Please enter your full name', 'name');
+                    isValid = false;
+                }
+                
+                // Email validation
+                if (!email) {
+                    showError('Please enter your email', 'email');
+                    isValid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError('Please enter a valid email address', 'email');
+                    isValid = false;
+                }
+                
+                // Password validation
+                if (!password) {
+                    showError('Please enter a password', 'password');
+                    isValid = false;
+                } else if (password.length < 8) {
+                    showError('Password must be at least 8 characters', 'password');
+                    isValid = false;
+                }
+                
+                // Terms validation
+                if (!terms) {
+                    showError('You must agree to the terms and conditions', 'terms');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+
+            function showError(message, fieldId = null) {
+                const errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                errorElement.textContent = message;
+                
+                if (fieldId) {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.parentNode.insertBefore(errorElement, field.nextSibling);
+                    }
+                } else {
+                    // Global error (show at top of form)
+                    const formTitle = document.querySelector('.form-title');
+                    formTitle.insertAdjacentElement('afterend', errorElement);
+                }
+            }
+        });
+
+        // Modal functions
+        function showModal(title, message) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('backendModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('backendModal').style.display = 'none';
+        }
+
+        // Simulated backend functions
+        function simulateBackendSignup(name, email, password) {
+            // Simulate successful signup 90% of the time
+            const isSuccess = Math.random() < 0.9;
+            
+            if (isSuccess) {
+                showModal("Signup Successful", `Account created for ${email}. Redirecting to dashboard...`);
+                // In a real app, you would redirect here
+                // window.location.href = '/dashboard';
+            } else {
+                // Simulate email already in use
+                showModal("Signup Failed", "The email address is already in use. Please try another email or log in.");
+            }
+        }
+
+        function simulateGoogleSignup() {
+            // Simulate successful Google auth 90% of the time
+            const isSuccess = Math.random() < 0.9;
+            
+            if (isSuccess) {
+                const randomEmail = `user${Math.floor(Math.random() * 1000)}@example.com`;
+                showModal("Google Signup Successful", `Account created with ${randomEmail}. Redirecting to dashboard...`);
+                // In a real app, you would redirect here
+                // window.location.href = '/dashboard';
+            } else {
+                showModal("Google Signup Failed", "Google authentication failed. Please try again.");
+            }
+        }
+
+        // Link functions
+        function showTerms() {
+            showModal("Terms of Service", "This is where your Terms of Service would be displayed. In a real implementation, this would link to a separate page with your full terms.");
+        }
+
+        function showPrivacy() {
+            showModal("Privacy Policy", "This is where your Privacy Policy would be displayed. In a real implementation, this would link to a separate page with your full privacy policy.");
+        }
+
+        function showLogin() {
+            showModal("Login", "This would redirect to the login page in a real implementation.");
+        }
+
+        // Initialize Google OAuth if loaded
+        if (window.google) {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID',
+                callback: handleGoogleResponse
+            });
+            
+            function handleGoogleResponse(response) {
+                console.log('Google auth response:', response);
+                simulateGoogleSignup();
+            }
+        }
+    </script>
+
+    <!-- Backend Implementation (for reference) -->
+    <script>
+        // This would be in your server.js file in a real implementation
+        /*
+        const express = require('express');
+        const mongoose = require('mongoose');
+        const bcrypt = require('bcryptjs');
+        const { OAuth2Client } = require('google-auth-library');
+        
+        const app = express();
+        app.use(express.json());
+        
+        // Connect to MongoDB
+        mongoose.connect('mongodb://localhost:27017/signup_app');
+        
+        // User model
+        const User = mongoose.model('User', {
+            name: String,
+            email: { type: String, unique: true },
+            password: String,
+            googleId: String
+        });
+        
+        // Google OAuth client
+        const googleClient = new OAuth2Client('YOUR_GOOGLE_CLIENT_ID');
+        
+        // Signup endpoint
+        app.post('/api/signup', async (req, res) => {
+            try {
+                const { name, email, password } = req.body;
+                
+                // Hash password
+                const hashedPassword = await bcrypt.hash(password, 12);
+                
+                // Create user
+                const user = new User({ name, email, password: hashedPassword });
+                await user.save();
+                
+                res.status(201).json({ success: true, message: 'User created' });
+            } catch (error) {
+                res.status(400).json({ success: false, message: error.message });
+            }
+        });
+        
+        // Google auth endpoint
+        app.post('/api/auth/google', async (req, res) => {
+            try {
+                const { credential } = req.body;
+                const ticket = await googleClient.verifyIdToken({
+                    idToken: credential,
+                    audience: 'YOUR_GOOGLE_CLIENT_ID'
+                });
+                
+                const payload = ticket.getPayload();
+                const { sub: googleId, name, email } = payload;
+                
+                // Find or create user
+                let user = await User.findOne({ email });
+                if (!user) {
+                    user = new User({ name, email, googleId });
+                    await user.save();
+                }
+                
+                res.json({ success: true, user });
+            } catch (error) {
+                res.status(400).json({ success: false, message: error.message });
+            }
+        });
+        
+        app.listen(5000, () => console.log('Server running on port 5000'));
+        */
+    </script>
+</body>
+</html>
